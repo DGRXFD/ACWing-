@@ -1,5 +1,7 @@
-#include<cstdio>
-int main()
-{
-  return 0;
-}
+c++标准模板库STL介绍
+一、vector
+   1、定义
+      单独定义一个vector：vector<typename> name
+   2、vector容器内元素的访问
+     （1）通过下标访问
+     （2）
