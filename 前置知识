@@ -1,0 +1,35 @@
+c++标准模板库STL介绍（《算法笔记》书中内容总结）
+一、vector（变长数组的容器）
+   1、定义
+      单独定义一个vector：vector<typename> name
+   2、vector容器内元素的访问
+     （1）通过下标访问
+     （2）通过迭代器访问 vector<typename>::interator it
+   3、vector常用函数
+     （1）push_back() 在vector后面添加一个元素
+     （2）pop_back() 删除vector的伪元素
+     （3）size() 返回unsigned类型，获得vector中元素的个数
+     （4）clear() 清除vector中的所有元素vi.clear() 
+     （5）insert(it,x) 用来向vector的任意迭代器it出插入一个元素x
+     （6）erase() 删除的那个元素erase(it)，删除区间[first,last)区间的元素erase(first,last)
+     
+ 二、set（内部自动有序且不含重读元素的容器）
+   1、定义
+      单独定义一个set：set<typename> name
+   2、set容器内元素的访问
+      set只能通过迭代器访问，除vector和string之外的STL容器都不支持*(it+i)的访问方式，set内的元自动递增排序，且去重
+   3、set常用函数
+     （1） insert(x) 将x插入到set容器中，并自动排序去重
+     （2） find(value) 返回set中对应值为value的迭代器
+     （3） erase() 删除单个元素st.erase(it)，it为所需要删除元素的迭代器，可配合find使用st.erase(st.find(1))，也可直接删除元素的值st.erase(value)
+                   删除有一个区间内的所有元素[first,last)，st.erase(first,last)
+     （4） size() 用来获得set元素的个数
+     （5） clear() 用来清空set中所有的元素
+
+三、string（添加#include<string>头文件）
+  1、定义 
+     直接在string后加上变量名，初始化可以直接给string类型变量进行赋值string str1 = 'abc'
+  2、string中内容的访问
+     
+                   
+   
