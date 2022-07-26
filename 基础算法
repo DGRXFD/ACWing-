@@ -30,9 +30,67 @@
     浮点数的二分模板
     double bsearch_r(double l,double r)
     {
-        double esp
+        double esp = 1e - 6;
+        while(r - l > eps)
+        {
+            double mid = (l + r)/2;
+            if(check(mid)) r = mid;
+            else l = mid;
+        }
+        return 0;
     }
     
 
 高精度计算
 （1）高精度加法
+     代码模板
+     vector<int> (vector<int> &A,vector<int> &B)
+     {
+        if(A.size() < B.size()) return add(B,A);
+        
+        vector<int> C;
+        int t = 0;
+        for(int i = 0;i < A.size();i++)
+        {
+            t += A[i];
+            if(i < B[i]) t += B[i];
+            c.push_back(t%10);
+            t = t / 10;
+        }
+        
+        if(t) C.push_back;
+        return C;
+     }
+ 
+ （2）高精度减法
+      先进性两个数的比较，如果为较小数减去较大数，输出符号并交换两个数的位置
+      1、判断两个大数的大小
+      bool cmp(vector<int> &A,vector<int> &B)
+      {
+            if(A.size() != B.size()) return A.size() > B.size();
+            for(int i = A.size() - 1;i >= 0;i--)
+            {
+                if(A[i] != B[i]) return A[i] > B[i];
+            }
+            reutrn true;
+      }
+      2、高精度减法
+      vector<int> sub(vector<int> &A,vector<int> &B)
+      {
+            vector<int> C;
+            int t = 0;
+            for(int i = 0;i < A.size();i++)
+            {
+                t = A[i] - t;
+                if(i < B.size()) t -= B[i];
+                C.push_back((t+10)%10);
+                if(t < 0) t = 1;
+                else t = 0
+            }
+            while(C.size() > 1 && C.back == 0) C.pop_back();
+            return C;
+      }
+      
+  （3）高精度乘法
+  
+  
