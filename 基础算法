@@ -26,3 +26,13 @@
         return l;
     }
     将数组[l,r]分为[l,mid-1][mid,r]
+
+    浮点数的二分模板
+    double bsearch_r(double l,double r)
+    {
+        double esp
+    }
+    
+
+高精度计算
+（1）高精度加法
