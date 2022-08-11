@@ -1,1 +1,22 @@
-
+单链表
+（1）增加一个头结点
+     void int_head(int x)
+     {
+          e[idx] = x;
+          ne[idx] = head;
+          head = idx;
+          idx++;
+     }
+（2）在k的元素后面添加一个元素
+     void add(int k,int x)
+     {
+          e[idx] = x;
+          ne[idx] = ne[k];
+          ne[k] = idx;
+          idx++;
+     }
+ （3）在k的元素后面删除一个元素
+      void del(int k)
+      {
+          ne[k] = ne[ne[k+1];
+      }
