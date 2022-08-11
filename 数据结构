@@ -1,4 +1,5 @@
 单链表
+用数组来代替结构体，按照顺序使用数组，然后通过数组下标来代替指针
 （1）增加一个头结点
      void int_head(int x)
      {
@@ -20,3 +21,141 @@
       {
           ne[k] = ne[ne[k+1];
       }
+#include<cstdio>
+
+const int N = 100010;
+int head,e[N], ne[N], idx;
+
+
+void init()
+{
+    head = -1;
+    idx = 0;
+}
+
+void into_head(int x)
+{
+    e[idx] = x;
+    ne[idx] = head;
+    head = idx;
+    idx++;
+}
+
+void add(int k, int x)  
+{
+    e[idx] = x;
+    ne[idx] = ne[k];
+    ne[k] = idx;
+    idx++;
+}
+
+void del(int k)
+{
+    ne[k] = ne[ne[k]];    
+}
+
+int main()
+{
+    init();
+    int n,k,x;
+    char c;
+    scanf("%d",&n);
+    while(n--)
+    {
+        getchar();
+        scanf("%c",&c);
+        if(c == 'H')
+        {
+            scanf("%d",&x);
+            into_head(x);
+        }
+        if(c == 'I')
+        {
+            scanf("%d%d",&k,&x);
+            add(k-1,x);
+        }
+        if(c == 'D')
+        {
+            scanf("%d",&k);
+            if(k == 0) head = ne[head];
+            else del(k-1);
+        }
+    }
+    for(int i = head;i != -1;i = ne[i]) printf("%d ",e[i]);
+    return 0;
+}
+
+
+双链表
+#include<cstdio>
+#include<iostream>
+using namespace std;
+const int N = 100010;
+int e[N],l[N],r[N],idx;
+
+void init()    //初始化链表，占两位，从下标为2的部分开始存储
+{
+    l[1] = 0;
+    r[0] = 1;
+    idx = 2;
+}
+
+
+void add(int k,int x)   //在第k个数的右边增加一个元素
+{                       //在第k个数的左边增加一个元素可以转换为在第k-1的右边增加一个元素
+    e[idx] = x;
+    r[idx] = r[k];
+    l[idx] = k;
+    l[r[k]] = idx;
+    r[k] = idx;
+    idx++;
+}
+
+void del(int k)    //删除一个数
+{
+    r[l[k]] = r[k];
+    l[r[k]] = l[k];
+}
+
+int main()
+{
+    init();
+    int n,x,k;
+    string str;
+    scanf("%d", &n);
+    while (n -- )
+    {
+            cin >> str;
+            if(str == "R")
+            {
+                scanf("%d",&x);
+                add(l[1],x);
+            }
+            if(str == "L")
+            {
+                scanf("%d",&x);
+                add(0,x);
+            }
+            if(str == "D")
+            {
+                scanf("%d",&k);
+                del(k+1);     //因为之前已经使用过两个元素，所以需要在k+2-1
+            }
+            if(str == "IR")
+            {
+                scanf("%d%d",&k,&x);
+                add(k+1,x);
+            }
+            if(str == "IL")
+            {
+                scanf("%d%d",&k,&x);
+                add(l[k+1],x);
+            }
+    }
+    for(int i = r[0];i != 1;i = r[i])
+    {
+        printf("%d ",e[i]);
+    }
+    return 0;
+}
+
